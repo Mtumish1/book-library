@@ -1,17 +1,23 @@
-
-# I guess this is what home page looks like
-# Still bathing my keyboard in tears
-
-<h1>All Books</h1>
-<ul>
-  <% @books.each do |book| %>
-    <li>
-      <strong><%= link_to book.title, book_path(book) %></strong> by <%= book.author %>
-      <% if book.available %>
-        <span style="color: green;">(Available)</span>
-      <% else %>
-        <span style="color: red;">(Borrowed)</span>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+<div class="container mx-auto p-6">
+  <h1 class="text-3xl font-bold mb-4">Book Library</h1>
+  
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <% @books.each do |book| %>
+      <div class="bg-white shadow-lg rounded-lg p-4">
+        <h2 class="text-xl font-semibold"><%= book.title %></h2>
+        <p class="text-gray-600">by <%= book.author %></p>
+        <p class="mt-2 text-sm">
+          Status: 
+          <% if book.availability_status %>
+            <span class="text-green-600 font-bold">Available</span>
+          <% else %>
+            <span class="text-red-600 font-bold">Borrowed</span>
+          <% end %>
+        </p>
+        <a href="<%= book_path(book) %>" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded">
+          View Details
+        </a>
+      </div>
+    <% end %>
+  </div>
+</div>
