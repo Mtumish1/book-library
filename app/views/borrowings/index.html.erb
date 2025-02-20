@@ -1,0 +1,32 @@
+<h1>Your Borrowed Books</h1>
+
+<% if @borrowings.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>ISBN</th>
+        <th>Due Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @borrowings.each do |borrowing| %>
+        <tr>
+          <td><%= borrowing.book.title %></td>
+          <td><%= borrowing.book.author %></td>
+          <td><%= borrowing.book.isbn %></td>
+          <td><%= borrowing.due_date.strftime('%B %d, %Y') %></td>
+          <td>
+            <%= link_to "Return", return_book_borrowing_path(borrowing), method: :patch, data: { confirm: "Are you sure you want to return this book?" } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>You have not borrowed any books.</p>
+<% end %>
+
+<%= link_to "Back to Books", books_path %>

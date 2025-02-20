@@ -8,3 +8,22 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+
+ nav ul {
+    list-style-type: none;
+    padding: 10px;
+    background: #333;
+    display: flex;
+    gap: 15px;
+  }
+  
+  nav ul li {
+    display: inline;
+  }
+  
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+  }
+  
