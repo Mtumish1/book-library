@@ -1,6 +1,11 @@
 
 
 # Still crying but learning ('_')
+# Here we create Borrowing logic.
+# A user borrows a book → creates a Borrowing record.
+# Prevent borrowing if already taken.
+# Set due date = borrowed date + 2 weeks.
+# A user can return a book (update returned_at field).
 
 class BorrowingsController < ApplicationController
   before_action :authenticate_user!
@@ -15,7 +20,7 @@ class BorrowingsController < ApplicationController
         due_date: 2.weeks.from_now
       )
       book.update(available: false)
-      redirect_to book_path(book), notice: "You have borrowed this book."
+      redirect_to book_path(book), notice: "Success! You have borrowed this book."
     else
       redirect_to book_path(book), alert: "This book is already borrowed."
     end
